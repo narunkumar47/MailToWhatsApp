@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 import threading
+import os
 
 from googleapiclient.discovery import build
 
@@ -29,6 +30,11 @@ from backend.oauth import create_google_flow
 from backend.whatsapp import send_whatsapp_message
 from backend.email_formatter import format_email_for_whatsapp
 from backend.email_checker import start_email_checker
+
+FRONTEND_URL = os.getenv(
+    "FRONTEND_URL",
+    "http://localhost:5173"
+)
 
 
 app = FastAPI(
@@ -273,7 +279,7 @@ def google_callback(request: Request):
     ):
         return RedirectResponse(
             url=(
-                "http://localhost:5173/"
+                f"{FRONTEND_URL}/"
                 "?error=invalid_oauth_state"
             )
         )
@@ -318,7 +324,7 @@ def google_callback(request: Request):
         )
 
         frontend_url = (
-            "http://localhost:5173/"
+            f"{FRONTEND_URL}/"
             f"?gmail_connected=true"
             f"&email={email}"
             f"&user_id={user_id}"
@@ -336,7 +342,7 @@ def google_callback(request: Request):
 
         return RedirectResponse(
             url=(
-                "http://localhost:5173/"
+                f"{FRONTEND_URL}/"
                 "?error=gmail_connection_failed"
             )
         )

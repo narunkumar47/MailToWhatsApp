@@ -33,7 +33,7 @@ from backend.email_checker import start_email_checker
 
 FRONTEND_URL = os.getenv(
     "FRONTEND_URL",
-    "http://localhost:5173"
+    "https://mailtowhatsapp-frontend.onrender.com"
 )
 
 

@@ -22,7 +22,7 @@ SCOPES = [
 
 
 # Google OAuth redirect URI
-REDIRECT_URI = "https://stir-distance-cognition.ngrok-free.dev/auth/callback"
+REDIRECT_URI = "https://mailtowhatsapp.onrender.com/auth/callback"
 
 def create_google_flow():
     """Create a Google OAuth flow for connecting Gmail."""
